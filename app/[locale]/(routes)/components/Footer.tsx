@@ -4,36 +4,27 @@ import React from "react";
 
 const Footer = async () => {
   const nextVersion = await getNextVersion();
-  //console.log(nextVersion, "nextVersion");
+  
   return (
-    <footer className="flex flex-row h-8 justify-end items-center w-full text-xs text-gray-500 p-5">
-      <div className="hidden md:flex pr-5">
-        <Link href="/">
-          <h1 className="text-gray-600">
-            {" "}
-            {process.env.NEXT_PUBLIC_APP_NAME} - {process.env.NEXT_PUBLIC_APP_V}
-          </h1>
-        </Link>
-      </div>
-      <div className="hidden md:flex space-x-2 pr-2">
-        powered by Next.js
-        <span className="bg-black rounded-md text-white px-1 mx-1">
-          {nextVersion.substring(1, 7) || process.env.NEXT_PUBLIC_NEXT_VERSION}
+    <footer className="flex items-center justify-between h-12 px-5 text-xs text-muted-foreground/60">
+      <div className="flex items-center gap-2">
+        <span className="font-medium">
+          {process.env.NEXT_PUBLIC_APP_NAME}
         </span>
-        +
-        <Link href={"https://ui.shadcn.com/"}>
-          <span className="rounded-md mr-2">shadcnUI</span>
-        </Link>{" "}
-        hosted by:
-        <span className="text-bold underline">
-          <Link href="https://www.vercel.com">Vercel</Link>
-        </span>
+        <span className="text-muted-foreground/40">•</span>
+        <span>build: 0.0.3-beta-390</span>
       </div>
-      <div className="hidden md:flex space-x-2">
-        Supported by:
-        <Link className="pl-1 font-bold" href="https://www.softbase.cz">
-          SoftBase s.r.o.
-        </Link>
+      
+      <div className="flex items-center gap-3 text-xs">
+        <span>NextCRM • 0.0.3-beta-beta</span>
+        <span className="text-muted-foreground/40">•</span>
+        <span>powered by Next.js {nextVersion?.substring(1, 7) || "15.2.4"}</span>
+        <span className="text-muted-foreground/40">•</span>
+        <span>shadcnUI</span>
+        <span className="text-muted-foreground/40">•</span>
+        <span>hosted by: <Link href="https://www.vercel.com" className="hover:text-foreground/80 transition-colors">Vercel</Link></span>
+        <span className="text-muted-foreground/40">•</span>
+        <span>Supported by: <Link href="https://www.softbase.cz" className="hover:text-foreground/80 transition-colors">SoftBase s.r.o.</Link></span>
       </div>
     </footer>
   );

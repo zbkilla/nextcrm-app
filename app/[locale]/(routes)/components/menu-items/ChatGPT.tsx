@@ -4,25 +4,30 @@ import { Bot } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import React from "react";
-
 type Props = {
   open: boolean;
 };
 
 const ChatGPTModuleMenu = ({ open }: Props) => {
   const pathname = usePathname();
-  const isPath = pathname.includes("openAi");
+  const isActive = pathname.includes("openAi");
+
   return (
-    <div className="flex flex-row items-center mx-auto p-2">
-      <Link
-        href={"/openAi"}
-        className={`flex gap-2 p-2 ${isPath ? "text-muted-foreground" : null}`}
-      >
-        <Bot className="w-6" />
-        <span className={open ? "" : "hidden"}>ChatGPT</span>
-      </Link>
-    </div>
+    <Link
+      href={"/openAi"}
+      className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 group ${
+        isActive 
+          ? "bg-accent text-accent-foreground" 
+          : "hover:bg-accent/50 text-foreground hover:text-foreground"
+      }`}
+    >
+      <Bot className="w-5 h-5 flex-shrink-0" />
+      {open && (
+        <span className="text-sm font-medium transition-all duration-200">
+          ChatGPT
+        </span>
+      )}
+    </Link>
   );
 };
 

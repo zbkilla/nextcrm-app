@@ -7,15 +7,13 @@ import bcrypt from "bcrypt";
 import { newUserNotify } from "./new-user-notify";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
-function getGoogleCredentials(): { clientId: string; clientSecret: string } {
+function getGoogleCredentials(): { clientId: string; clientSecret: string } | null {
   const clientId = process.env.GOOGLE_ID;
   const clientSecret = process.env.GOOGLE_SECRET;
-  if (!clientId || clientId.length === 0) {
-    throw new Error("Missing GOOGLE_ID");
-  }
-
-  if (!clientSecret || clientSecret.length === 0) {
-    throw new Error("Missing GOOGLE_SECRET");
+  
+  // Make Google OAuth optional
+  if (!clientId || clientId.length === 0 || !clientSecret || clientSecret.length === 0) {
+    return null;
   }
 
   return { clientId, clientSecret };
@@ -29,16 +27,22 @@ export const authOptions: NextAuthOptions = {
   },
 
   providers: [
-    GoogleProvider({
-      clientId: getGoogleCredentials().clientId,
-      clientSecret: getGoogleCredentials().clientSecret,
-    }),
+    // Only add Google provider if credentials are available
+    ...(getGoogleCredentials() ? [
+      GoogleProvider({
+        clientId: getGoogleCredentials()!.clientId,
+        clientSecret: getGoogleCredentials()!.clientSecret,
+      })
+    ] : []),
 
-    GitHubProvider({
-      name: "github",
-      clientId: process.env.GITHUB_ID!,
-      clientSecret: process.env.GITHUB_SECRET!,
-    }),
+    // Only add GitHub provider if credentials are available
+    ...(process.env.GITHUB_ID && process.env.GITHUB_SECRET ? [
+      GitHubProvider({
+        name: "github",
+        clientId: process.env.GITHUB_ID,
+        clientSecret: process.env.GITHUB_SECRET,
+      })
+    ] : []),
 
     CredentialsProvider({
       name: "credentials",

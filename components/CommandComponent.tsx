@@ -46,7 +46,7 @@ export function CommandComponent() {
         router.push("/profile");
         setOpen(false);
       }
-      if (e.key === "k" && e.metaKey) {
+      if (e.key === "l" && e.metaKey) {
         signOut();
       }
     };
@@ -96,7 +96,7 @@ export function CommandComponent() {
             <CommandItem onClick={() => signOut()}>
               <LogOut className="mr-2 h-4 w-4" />
               <span>Logout</span>
-              <CommandShortcut>⌘k</CommandShortcut>
+              <CommandShortcut>⌘L</CommandShortcut>
             </CommandItem>
           </CommandGroup>
         </CommandList>

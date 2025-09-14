@@ -21,13 +21,13 @@ const MainPageView = async () => {
   const leads = await getLeads();
   const contracts = await getContractsWithIncludes();
   return (
-    <>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
       <AccountsView crmData={crmData} data={accounts} />
       <OpportunitiesView crmData={crmData} data={opportunities} />
       <ContactsView crmData={crmData} data={contacts} />
       <LeadsView crmData={crmData} data={leads} />
       <ContractsView crmData={crmData} data={contracts} />
-    </>
+    </div>
   );
 };
 

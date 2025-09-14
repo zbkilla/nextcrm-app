@@ -40,52 +40,34 @@ const ContactsView = ({ data, crmData }: any) => {
   const { users, accounts } = crmData;
 
   return (
-    <Card>
-      <CardHeader className="pb-3">
-        <div className="flex justify-between">
-          <div>
-            <CardTitle
-              onClick={() => router.push("/crm/contacts")}
-              className="cursor-pointer"
-            >
-              Contacts
-            </CardTitle>
-            <CardDescription></CardDescription>
+    <>
+      <Sheet open={open} onOpenChange={() => setOpen(false)}>
+        <SheetContent className="min-w-[1000px] space-y-2">
+          <SheetHeader>
+            <SheetTitle>Create new Contact</SheetTitle>
+          </SheetHeader>
+          <div className="h-full overflow-y-auto">
+            <NewContactForm
+              users={users}
+              accounts={accounts}
+              onFinish={() => setOpen(false)}
+            />
           </div>
-          <div className="flex space-x-2">
-            <Sheet open={open} onOpenChange={() => setOpen(false)}>
-              <Button
-                className="m-2 cursor-pointer"
-                onClick={() => setOpen(true)}
-              >
-                +
-              </Button>
-              <SheetContent className="min-w-[1000px] space-y-2">
-                <SheetHeader>
-                  <SheetTitle>Create new Account</SheetTitle>
-                </SheetHeader>
-                <div className="h-full overflow-y-auto">
-                  <NewContactForm
-                    users={users}
-                    accounts={accounts}
-                    onFinish={() => setOpen(false)}
-                  />
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div>
-        </div>
-        <Separator />
-      </CardHeader>
+        </SheetContent>
+      </Sheet>
 
-      <CardContent>
-        {!data || data.length === 0 ? (
-          "No assigned contacts found"
-        ) : (
-          <ContactsDataTable data={data} columns={columns} />
-        )}
-      </CardContent>
-    </Card>
+      {!data || data.length === 0 ? (
+        "No assigned contacts found"
+      ) : (
+        <ContactsDataTable
+          data={data}
+          columns={columns}
+          users={users}
+          accounts={accounts}
+          onCreateClick={() => setOpen(true)}
+        />
+      )}
+    </>
   );
 };
 

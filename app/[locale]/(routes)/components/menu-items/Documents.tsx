@@ -1,8 +1,8 @@
+"use client";
+
 import { FileText } from "lucide-react";
 import Link from "next/link";
-
 import { usePathname } from "next/navigation";
-import React from "react";
 
 type Props = {
   open: boolean;
@@ -11,17 +11,24 @@ type Props = {
 
 const DocumentsModuleMenu = ({ open, title }: Props) => {
   const pathname = usePathname();
-  const isPath = pathname.includes("documents");
+  const isActive = pathname.includes("documents");
+
   return (
-    <div className="flex flex-row items-center mx-auto p-2">
-      <Link
-        href={"/documents"}
-        className={`flex gap-2 p-2 ${isPath ? "text-muted-foreground" : null}`}
-      >
-        <FileText className="w-6" />
-        <span className={open ? "" : "hidden"}>{title}</span>
-      </Link>
-    </div>
+    <Link
+      href={"/documents"}
+      className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 group ${
+        isActive 
+          ? "bg-accent text-accent-foreground" 
+          : "hover:bg-accent/50 text-foreground hover:text-foreground"
+      }`}
+    >
+      <FileText className="w-5 h-5 flex-shrink-0" />
+      {open && (
+        <span className="text-sm font-medium transition-all duration-200">
+          {title}
+        </span>
+      )}
+    </Link>
   );
 };
 

@@ -2,6 +2,7 @@
 
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { Table } from "@tanstack/react-table";
+import { Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,10 +12,12 @@ import { DataTableFacetedFilter } from "./data-table-faceted-filter";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
+  onCreateClick?: () => void;
 }
 
 export function DataTableToolbar<TData>({
   table,
+  onCreateClick,
 }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
 
@@ -42,7 +45,15 @@ export function DataTableToolbar<TData>({
           </Button>
         )}
       </div>
-      <DataTableViewOptions table={table} />
+      <div className="flex items-center space-x-2">
+        {onCreateClick && (
+          <Button onClick={onCreateClick} size="sm">
+            <Plus className="mr-2 h-4 w-4" />
+            Create Contact
+          </Button>
+        )}
+        <DataTableViewOptions table={table} />
+      </div>
     </div>
   );
 }

@@ -64,9 +64,9 @@ export default async function AppLayout({
 
   //console.log(typeof build, "build");
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-screen bg-background">
       <SideBar build={build} />
-      <div className="flex flex-col h-full w-full overflow-hidden">
+      <div className="flex flex-col flex-1 min-w-0">
         <Header
           id={session.user.id as string}
           name={session.user.name as string}
@@ -74,7 +74,11 @@ export default async function AppLayout({
           avatar={session.user.image as string}
           lang={session.user.userLanguage as string}
         />
-        <div className="flex-grow overflow-y-auto h-full p-5">{children}</div>
+        <main className="flex-1 overflow-auto bg-background">
+          <div className="w-full h-full p-6">
+            {children}
+          </div>
+        </main>
         <Footer />
       </div>
     </div>

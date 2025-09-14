@@ -1,34 +1,34 @@
 "use client";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Lightbulb, ServerIcon, UserIcon } from "lucide-react";
-import Link from "next/link";
 
-import { usePathname, useRouter } from "next/navigation";
-import React from "react";
+import { Brain } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 type Props = {
   open: boolean;
+  title?: string;
 };
 
-const SecondBrainModuleMenu = ({ open }: Props) => {
+const SecondBrainModuleMenu = ({ open, title = "Second brain" }: Props) => {
   const pathname = usePathname();
-  const isPath = pathname.includes("secondBrain");
+  const isActive = pathname.includes("secondBrain");
+
   return (
-    <div className="flex flex-row items-center mx-auto p-2">
-      <Link
-        href={"/secondBrain"}
-        className={`flex gap-2 p-2 ${isPath ? "text-muted-foreground" : null}`}
-      >
-        <Lightbulb className="w-6" />
-        <span className={open ? "" : "hidden"}>Second brain</span>
-      </Link>
-    </div>
+    <Link
+      href={"/secondBrain"}
+      className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 group ${
+        isActive
+          ? "bg-accent text-accent-foreground"
+          : "hover:bg-accent/50 text-foreground hover:text-foreground"
+      }`}
+    >
+      <Brain className="w-5 h-5 flex-shrink-0" />
+      {open && (
+        <span className="text-sm font-medium transition-all duration-200">
+          {title}
+        </span>
+      )}
+    </Link>
   );
 };
 
