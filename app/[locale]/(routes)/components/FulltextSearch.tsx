@@ -55,7 +55,7 @@ const FulltextSearch = () => {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="relative w-full max-w-md flex items-center justify-between h-9 rounded-full border border-input dark:border-zinc-700 bg-secondary/30 dark:bg-zinc-800/50 px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:border-transparent transition-all duration-200 hover:bg-secondary/50 dark:hover:bg-zinc-800/70"
+        className="relative w-full max-w-md flex items-center justify-between h-9 rounded-full bg-gray-100/80 dark:bg-white/5 border border-gray-200/50 dark:border-white/5 px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-300 dark:focus-visible:ring-white/20 focus-visible:border-transparent transition-all duration-300 hover:bg-gray-200/80 dark:hover:bg-white/10 hover:shadow-[0_2px_8px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_4px_12px_rgba(0,0,0,0.2)]"
       >
         <div className="flex items-center gap-2">
           <SearchIcon className="h-4 w-4 text-muted-foreground" />

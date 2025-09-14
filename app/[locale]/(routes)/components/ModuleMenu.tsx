@@ -37,7 +37,7 @@ const ModuleMenu = ({ modules, dict, build }: Props) => {
   }
 
   return (
-    <div className="flex flex-col bg-muted/50 dark:bg-zinc-900/50 h-screen">
+    <div className="flex flex-col bg-white/70 dark:bg-slate-900/30 backdrop-blur-2xl border-r border-gray-200/50 dark:border-white/5 h-screen">
       <div
         className={` ${
           open ? "w-64" : "w-16"

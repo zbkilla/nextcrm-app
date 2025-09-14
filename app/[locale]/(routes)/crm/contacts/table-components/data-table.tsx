@@ -78,7 +78,7 @@ export function ContactsDataTable<TData, TValue>({
   return (
     <div className="space-y-4">
       <DataTableToolbar table={table} onCreateClick={onCreateClick} />
-      <div className="rounded-md border">
+      <div className="rounded-xl overflow-hidden warp-card">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

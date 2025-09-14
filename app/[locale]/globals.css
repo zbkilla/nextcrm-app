@@ -2,6 +2,153 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Apple-inspired Glassmorphism with Light/Dark support */
+@layer utilities {
+  /* Light mode glass */
+  .glass-light {
+    background: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+
+  /* Dark mode glass */
+  .glass-dark {
+    background: rgba(17, 24, 39, 0.5) !important;
+    backdrop-filter: blur(40px) saturate(150%);
+    -webkit-backdrop-filter: blur(40px) saturate(150%);
+  }
+
+  .glass-border {
+    @apply border border-gray-200/50 dark:border-white/5;
+  }
+
+  /* Light mode shadows */
+  .apple-shadow-light {
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.08),
+      0 1px 4px rgba(0, 0, 0, 0.04),
+      inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+  }
+
+  .apple-shadow-light-hover {
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.12),
+      0 2px 8px rgba(0, 0, 0, 0.06),
+      inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Dark mode shadows */
+  .apple-shadow-dark {
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      0 2px 8px rgba(0, 0, 0, 0.2),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  }
+
+  .apple-shadow-dark-hover {
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.4),
+      0 4px 12px rgba(0, 0, 0, 0.3),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+
+  /* Card with theme support */
+  .warp-card {
+    @apply glass-border transition-all duration-500 rounded-xl;
+  }
+
+  .warp-card:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Light mode card */
+  :root .warp-card {
+    @apply glass-light apple-shadow-light;
+  }
+
+  :root .warp-card:hover {
+    @apply apple-shadow-light-hover;
+    background: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  /* Dark mode card */
+  .dark .warp-card {
+    @apply glass-dark apple-shadow-dark;
+  }
+
+  .dark .warp-card:hover {
+    @apply apple-shadow-dark-hover;
+    background: rgba(17, 24, 39, 0.6) !important;
+  }
+
+  .warp-menu-item {
+    @apply flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-300 group border;
+  }
+
+  /* Light mode menu items */
+  :root .warp-menu-item-active {
+    @apply bg-gray-900 text-white border-gray-200/20;
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.1),
+      inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+  }
+
+  :root .warp-menu-item-inactive {
+    @apply hover:bg-gray-100 text-gray-600 hover:text-gray-900 border-transparent;
+  }
+
+  :root .warp-menu-item-inactive:hover {
+    box-shadow:
+      0 1px 4px rgba(0, 0, 0, 0.05),
+      inset 0 0 0 1px rgba(0, 0, 0, 0.03);
+  }
+
+  /* Dark mode menu items */
+  .dark .warp-menu-item-active {
+    @apply bg-white/10 text-white border-white/10;
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.3),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+
+  .dark .warp-menu-item-inactive {
+    @apply hover:bg-white/5 text-gray-400 hover:text-white border-transparent;
+  }
+
+  .dark .warp-menu-item-inactive:hover {
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.2),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+
+  /* Table specific styles */
+  table {
+    @apply w-full;
+  }
+
+  tbody tr {
+    @apply transition-all duration-200;
+  }
+
+  /* Light mode tables */
+  :root thead {
+    @apply bg-gray-50/80;
+  }
+
+  :root tbody tr:hover {
+    @apply bg-gray-50/50;
+  }
+
+  /* Dark mode tables */
+  .dark thead {
+    background: rgba(255, 255, 255, 0.03) !important;
+  }
+
+  .dark tbody tr:hover {
+    background: rgba(255, 255, 255, 0.02) !important;
+  }
+}
+
 @keyframes dialog-overlay-show {
   from {
     opacity: 0;

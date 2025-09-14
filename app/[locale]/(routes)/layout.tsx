@@ -64,7 +64,7 @@ export default async function AppLayout({
 
   //console.log(typeof build, "build");
   return (
-    <div className="flex h-screen bg-background">
+    <div className="flex h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       <SideBar build={build} />
       <div className="flex flex-col flex-1 min-w-0">
         <Header
@@ -74,7 +74,7 @@ export default async function AppLayout({
           avatar={session.user.image as string}
           lang={session.user.userLanguage as string}
         />
-        <main className="flex-1 overflow-auto bg-background rounded-tl-[2rem]">
+        <main className="flex-1 overflow-auto bg-transparent rounded-tl-[2rem]">
           <div className="w-full h-full p-6">
             {children}
           </div>
