@@ -14,7 +14,7 @@ type Props = {
 const Header = ({ id, name, email, avatar, lang }: Props) => {
   return (
     <>
-      <div className="flex h-20 items-center px-5 border-b border-border">
+      <div className="flex h-20 items-center px-5 bg-muted/50 dark:bg-zinc-900/50">
         <div className="flex-1">
           <h1 className="text-2xl font-semibold">Dashboard</h1>
         </div>

@@ -37,13 +37,13 @@ const ModuleMenu = ({ modules, dict, build }: Props) => {
   }
 
   return (
-    <div className="flex flex-col bg-background border-r border-border h-screen">
+    <div className="flex flex-col bg-muted/50 dark:bg-zinc-900/50 h-screen">
       <div
         className={` ${
           open ? "w-64" : "w-16"
         } flex flex-col relative transition-all duration-300 h-full`}
       >
-        <div className="flex items-center h-20 px-4 border-b border-border">
+        <div className="flex items-center h-20 px-4">
           <div className="flex items-center gap-3">
             <div
               className={`cursor-pointer flex items-center justify-center w-8 h-8 rounded-lg hover:bg-accent transition-colors ${

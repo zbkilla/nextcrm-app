@@ -74,7 +74,7 @@ export default async function AppLayout({
           avatar={session.user.image as string}
           lang={session.user.userLanguage as string}
         />
-        <main className="flex-1 overflow-auto bg-background">
+        <main className="flex-1 overflow-auto bg-background rounded-tl-[2rem]">
           <div className="w-full h-full p-6">
             {children}
           </div>
